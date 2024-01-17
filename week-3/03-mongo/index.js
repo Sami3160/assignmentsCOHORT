@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const adminRouter = require("./routes/admin")
 const userRouter = require("./routes/user");
-
 // Middleware for parsing request bodies
 app.use(bodyParser.json());
 app.use("/admin", adminRouter)
 app.use("/user", userRouter)
-
+app.get("/",(req,res)=>{
+    res.send("app is running")
+})
 const PORT = 3000;
 
 app.listen(PORT, () => {

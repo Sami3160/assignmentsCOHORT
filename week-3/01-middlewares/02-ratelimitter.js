@@ -12,6 +12,17 @@ const app = express();
 // clears every one second
 
 let numberOfRequestsForUser = {};
+app.use((req,res,next)=>{
+  let userid=req.headers['user-id']
+  if(!numberOfRequestsForUser[userid] ){
+    numberOfRequestsForUser[userid]=0
+  }
+  numberOfRequestsForUser[userid]+=1;
+  if(numberOfRequestsForUser[userid]>5){
+    res.status(404).send("not found")
+  }
+  next()
+})
 setInterval(() => {
     numberOfRequestsForUser = {};
 }, 1000)
