@@ -12,7 +12,14 @@ export const Assignment3 = () => {
     ]);
 
     // Your code starts here
-    const totalValue = 0;
+    let totalValue = useMemo(()=>{
+        let total=items.reduce((acc,ele)=>{
+            return acc+ele.value;
+            // console.log(acc)
+        },0)
+        console.log(total)
+        return total
+    },[])
     // Your code ends here
     return (
         <div>
